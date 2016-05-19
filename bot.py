@@ -5,8 +5,15 @@
 import requests
 from bot_server import BotServer, BotServerRequestHandler
 
-group  = 22000913
-bot_id = 'c08d456b084bcd213f6052aeba'
+try:
+  import config
+  group = config.group
+  bot_id = config.bot_id
+except:
+  print 'Except'
+  import gen_config
+  group = gen_config.group
+  bot_id = gen_config.bot_id
 
 def send_message(message, bot):
   # Helper function to send a message
