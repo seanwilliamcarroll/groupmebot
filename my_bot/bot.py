@@ -3,19 +3,17 @@
 # Attempt at building a groupme bot
 
 import requests
+import os
 
 
-def send_message(message, bot):
+def send_message(message):
   try:
     import config
-    group = config.group
     bot_id = config.bot_id
   except:
-    import gen_config
-    group = gen_config.group
-    bot_id = gen_config.bot_id
+    bot_id = os.environ['BOT_ID']
   # Helper function to send a message
-  payload = {'bot_id':bot, 'text':message}
+  payload = {'bot_id':bot_id, 'text':message}
   r = requests.post("https://api.groupme.com/v3/bots/post", data=payload)
   # print r.status_code
   return r.text
