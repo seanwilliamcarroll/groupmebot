@@ -7,6 +7,8 @@ Current usage:
 
 Ideas:
 -- Run as Django app, so can be run with Heroku?
+-- -- First, create Django app that can send messages
+-- -- Then, integrate with Heroku
 -- Add ability to repeat last message
 -- Add ability to call someone out for liking their own message
 -- Add ability to fetch stock information (yahoo.financials.com?)
