@@ -10,7 +10,6 @@ try:
   group = config.group
   bot_id = config.bot_id
 except:
-  print 'Except'
   import gen_config
   group = gen_config.group
   bot_id = gen_config.bot_id
