@@ -4,7 +4,7 @@ My lame attempt at building a groupmebot
 
 Current usage:
  * Local
-  *Create a file 'config.py' with two variables: bot_id and group (see gen_config.py for a template). Set these to the group number of your bot and the bot id as a string, as is done in the template.
+  * Create a file 'config.py' with two variables: bot_id and group (see gen_config.py for a template). Set these to the group number of your bot and the bot id as a string, as is done in the template.
  * Heroku
   * Be sure to create a config variable called 'BOT_ID' and set it to your bot's key 
 
