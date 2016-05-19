@@ -8,6 +8,7 @@ import os
 
 def send_message(message):
   try:
+    # Hacky fix for now so it works local?
     import config
     bot_id = config.bot_id
   except:
