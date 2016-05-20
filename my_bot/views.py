@@ -1,17 +1,22 @@
 from django.shortcuts import render
 from django.http      import HttpResponse, HttpResponseNotFound
-import bot
+from types import *
 import datetime
 
+import bot
 
 def index(request):
   if request.method == 'POST':
     # Find most recent message and send it back
-    if is_valid_v3_message(request) and request.POST["sender_type"] is "user":
+    #if is_valid_v3_message(request) and request.POST["sender_type"] is "user":
+    data = request.body
+    data = eval(data)
+    data = type(data)
+    if 0 == 1:
       bot.send_message("User {} sent: {}".format(request.POST["name"],request.POST["text"]))
       return HttpResponse("OK")
     #bot.send_message("Error: %s" % request.body)
-    return HttpResponseNotFound(request.body)
+    return HttpResponseNotFound(data)
   elif request.method == 'GET':
     return HttpResponse("Hello, world. You're at my_bot's index. Git update")
   else:
@@ -38,3 +43,5 @@ def is_valid_v3_message(request):
      "system"      in request.POST and \
      "text"        in request.POST and \
      "user_id"     in request.POST
+
+
