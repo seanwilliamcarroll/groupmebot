@@ -11,7 +11,11 @@ def index(request):
     data = request.body
     print data
     print type(data)
-    data = eval(data)
+    try:
+      data = eval(data)
+    except:
+      print "Eval failed"
+      return HttpResponseNotFound("Bad")
     if 1==1:#is_valid_v3_message(data):
       if data['sender_type'] == 'user':
         bot.send_message("User {} sent: {}".format(data['name'],data['text']))
