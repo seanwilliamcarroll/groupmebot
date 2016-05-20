@@ -23,9 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '3krwsuihvf1=72ox!uy71it%@yj!u^j(_s$l!o6*sh$93c4!km'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False#True
+# TODO: ENSURE SECURITY FLAWS
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+# TODO: ENSURE SECURITY FLAWS
 
 
 # Application definition
@@ -43,7 +45,8 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
+# TODO: ENSURE SECURITY FLAWS
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',

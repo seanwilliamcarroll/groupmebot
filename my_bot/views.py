@@ -5,10 +5,10 @@ import datetime
 
 
 def index(request):
-  if request.POST:
+  if request.method == 'POST':
     return HttpResponse(request.body)
-  else if request.GET:
-    return HttpResponse(request.body)
+  elif request.method == 'GET':
+    return HttpResponse("Body: %d" % len(request.body))
     #return HttpResponse("Hello, world. You're at my_bot's index. Git update")
   else:
     return HttpResponseNotFound("Bad request")
