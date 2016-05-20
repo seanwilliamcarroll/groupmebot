@@ -8,15 +8,15 @@ import bot
 def index(request):
   if request.method == 'POST':
     # Find most recent message and send it back
-    #if is_valid_v3_message(request) and request.POST["sender_type"] is "user":
     data = request.body
     data = eval(data)
-    data = type(data)
-    if 0 == 1:
-      bot.send_message("User {} sent: {}".format(request.POST["name"],request.POST["text"]))
-      return HttpResponse("OK")
-    #bot.send_message("Error: %s" % request.body)
-    return HttpResponseNotFound(data)
+    if is_valid_v3_message(data):
+      if data['sender_type'] == 'user':
+        bot.send_message("User {} sent: {}".format(data['name'],data["text"]))
+        return HttpResponse("OK")
+      else:
+        return HttpResponse("OK")
+    return HttpResponseNotFound(str(data))
   elif request.method == 'GET':
     return HttpResponse("Hello, world. You're at my_bot's index. Git update")
   else:
@@ -29,19 +29,19 @@ def message(request):
   return HttpResponse("Message sent: %s" % message)
 
 # Helper to determine is a message is a valid v3 message
-def is_valid_v3_message(request):
+def is_valid_v3_message(data):
   return \
-     "attachments" in request.POST and \
-     "avatar_url"  in request.POST and \
-     "created_at"  in request.POST and \
-     "group_id"    in request.POST and \
-     "id"          in request.POST and \
-     "name"        in request.POST and \
-     "sender_id"   in request.POST and \
-     "sender_type" in request.POST and \
-     "source_guid" in request.POST and \
-     "system"      in request.POST and \
-     "text"        in request.POST and \
-     "user_id"     in request.POST
+     "attachments" in data and \
+     "avatar_url"  in data and \
+     "created_at"  in data and \
+     "group_id"    in data and \
+     "id"          in data and \
+     "name"        in data and \
+     "sender_id"   in data and \
+     "sender_type" in data and \
+     "source_guid" in data and \
+     "system"      in data and \
+     "text"        in data and \
+     "user_id"     in data
 
 
