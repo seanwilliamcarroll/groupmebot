@@ -6,10 +6,13 @@ import datetime
 
 def index(request):
   if request.method == 'POST':
-    return HttpResponse(request.body)
+    # Find most recent message and send it back
+    if 'text' in request.POST and 'name' in request.POST:
+      bot.send_message("User {} sent: {}".format(request.POST['name'],request.POST['text']))
+      return HttpResponse("OK")
+    return HttpResponseNotFound(request.body)
   elif request.method == 'GET':
-    return HttpResponse("Body: %d" % len(request.body))
-    #return HttpResponse("Hello, world. You're at my_bot's index. Git update")
+    return HttpResponse("Hello, world. You're at my_bot's index. Git update")
   else:
     return HttpResponseNotFound("Bad request")
 
