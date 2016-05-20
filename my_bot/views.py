@@ -10,7 +10,7 @@ def index(request):
     # Find most recent message and send it back
     data = request.body
     data = eval(data)
-    if is_valid_v3_message(data):
+    if 1==1:#is_valid_v3_message(data):
       if data['sender_type'] == 'user':
         bot.send_message("User {} sent: {}".format(data['name'],data["text"]))
         return HttpResponse("OK")
