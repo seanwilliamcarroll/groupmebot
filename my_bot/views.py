@@ -10,6 +10,7 @@ def index(request):
     if 'text' in request.POST and 'name' in request.POST:
       bot.send_message("User {} sent: {}".format(request.POST['name'],request.POST['text']))
       return HttpResponse("OK")
+    bot.send_message("Error: %s" % request.body)
     return HttpResponseNotFound(request.body)
   elif request.method == 'GET':
     return HttpResponse("Hello, world. You're at my_bot's index. Git update")
