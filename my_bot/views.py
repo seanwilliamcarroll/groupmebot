@@ -7,7 +7,7 @@ import datetime
 def index(request):
   if request.method == 'POST':
     # Find most recent message and send it back
-    if 'text' in request.POST and 'name' in request.POST:
+    if 'text' in request.POST and 'name' in request.POST and 'sender_type' in request.POST and request.POST['sender_type'] == "user":
       bot.send_message("User {} sent: {}".format(request.POST['name'],request.POST['text']))
       return HttpResponse("OK")
     bot.send_message("Error: %s" % request.body)
