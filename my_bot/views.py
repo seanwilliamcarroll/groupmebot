@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http      import HttpResponse, HttpResponseNotFound
 from types import *
-import ast
 import datetime
 
 import bot
@@ -13,7 +12,7 @@ def index(request):
     print data
     print type(data)
     try:
-      data = ast.literal_eval(data)
+      data = json.loads(data)
     except:
       print "Eval failed"
       return HttpResponseNotFound("Bad")
