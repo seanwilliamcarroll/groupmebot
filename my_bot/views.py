@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http      import HttpResponse, HttpResponseNotFound
 from types import *
 import datetime
+import json
+import ast
 
 import bot
 
@@ -9,14 +11,11 @@ def index(request):
   if request.method == 'POST':
     # Find most recent message and send it back
     data = request.body
-    print data
-    print type(data)
     try:
       data = json.loads(data)
     except:
-      print "Eval failed"
-      return HttpResponseNotFound("Bad")
-    if 1==1:#is_valid_v3_message(data):
+      return HttpResponseNotFound("Bad message")
+    if is_valid_v3_message(data):
       if data['sender_type'] == 'user':
         bot.send_message("User {} sent: {}".format(data['name'],data['text']))
         return HttpResponse("OK")
