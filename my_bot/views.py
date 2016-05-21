@@ -29,6 +29,24 @@ def parrot(request):
   else:
     return HttpResponseNotFound("Bad request")
 
+def hello(request):
+  if request.method == 'POST':
+    # Make sure it is a valid message
+    data = request.body
+    try:
+      data = json.loads(data)
+    except:
+      return HttpResponseNotFound("Bad message")
+    if is_valid_v3_message(data):
+      if data['sender_type'] == 'user':
+        # Check if message contains 'hello' anywhere
+        if data['text'].lower().find("hello") >= 0:
+          bot.send_message("Hello {}!".format(data['name']))
+      return HttpResponse("OK")
+  elif request.method == 'GET':
+    return HttpResponse("Hello there!")
+  return HttpResponseNotFound("Bad request")
+
 def message(request):
   message = datetime.datetime.now()
   message = message.strftime("%A %B %d %Y %I:%M%p")
