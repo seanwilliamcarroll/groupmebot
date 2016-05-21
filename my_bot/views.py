@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.http      import HttpResponse, HttpResponseNotFound
-from types import *
 import datetime
 import json
-import ast
 
 import bot
 
 def index(request):
+  return HttpResponse("Pay no attention to the man behind the curtain2")
+
+def parrot(request):
   if request.method == 'POST':
     # Find most recent message and send it back
     data = request.body
@@ -17,13 +18,14 @@ def index(request):
       return HttpResponseNotFound("Bad message")
     if is_valid_v3_message(data):
       if data['sender_type'] == 'user':
+        # Only want to parrot user's messages, else infinite loop
         bot.send_message("{}".format(data['text']))
         return HttpResponse("OK")
       else:
         return HttpResponse("OK")
-    return HttpResponseNotFound(str(data))
+    return HttpResponseNotFound("Invalid Groupme Message")
   elif request.method == 'GET':
-    return HttpResponse("Hello, world. You're at my_bot's index. Git update")
+    return HttpResponse("Hello, world. You're at parrot_bot's index.")
   else:
     return HttpResponseNotFound("Bad request")
 
