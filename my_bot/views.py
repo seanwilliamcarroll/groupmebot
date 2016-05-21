@@ -6,8 +6,6 @@ import os
 
 import bot
 
-global PARROT_BOT_ON = os.environ['PARROT_BOT_ON']
-
 def index(request):
   return HttpResponse("Pay no attention to the man behind the curtain2")
 
@@ -22,10 +20,7 @@ def parrot(request):
     if is_valid_v3_message(data):
       if data['sender_type'] == 'user':
         # Only want to parrot user's messages, else infinite loop
-        if data['text'] == '!ParrotBot':
-          PARROT_BOT_ON = not PARROT_BOT_ON
-        if PARROT_BOT_ON:
-          bot.send_message('PARROT_BOT', "{}".format(data['text']))
+        bot.send_message('PARROT_BOT', "{}".format(data['text']))
         return HttpResponse("OK")
       else:
         return HttpResponse("OK")

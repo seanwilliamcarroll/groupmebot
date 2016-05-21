@@ -5,7 +5,6 @@
 import requests
 import os
 
-
 def send_message(bot_id, message):
   try:
     bot_id = os.environ[bot_id]
