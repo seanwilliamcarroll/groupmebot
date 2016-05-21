@@ -17,7 +17,7 @@ def index(request):
       return HttpResponseNotFound("Bad message")
     if is_valid_v3_message(data):
       if data['sender_type'] == 'user':
-        bot.send_message("User {} sent: {}".format(data['name'],data['text']))
+        bot.send_message("{}".format(data['text']))
         return HttpResponse("OK")
       else:
         return HttpResponse("OK")
