@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http      import HttpResponse, HttpResponseNotFound
 import datetime
 import json
+import os
 
 import bot
 
@@ -19,7 +20,10 @@ def parrot(request):
     if is_valid_v3_message(data):
       if data['sender_type'] == 'user':
         # Only want to parrot user's messages, else infinite loop
-        bot.send_message('PARROT_BOT', "{}".format(data['text']))
+        if data['text'] == '!ParrotBot':
+          os.environ['PARROT_BOT_ON'] = not os.environ['PARROT_BOT_ON']
+        if os.environ['PARROT_BOT_ON']:
+          bot.send_message('PARROT_BOT', "{}".format(data['text']))
         return HttpResponse("OK")
       else:
         return HttpResponse("OK")
