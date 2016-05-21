@@ -19,7 +19,7 @@ def parrot(request):
     if is_valid_v3_message(data):
       if data['sender_type'] == 'user':
         # Only want to parrot user's messages, else infinite loop
-        bot.send_message("{}".format(data['text']))
+        bot.send_message('PARROT_BOT', "{}".format(data['text']))
         return HttpResponse("OK")
       else:
         return HttpResponse("OK")
@@ -41,7 +41,7 @@ def hello(request):
       if data['sender_type'] == 'user':
         # Check if message contains 'hello' anywhere
         if data['text'].lower().find("hello") >= 0:
-          bot.send_message("Hello {}!".format(data['name']))
+          bot.send_message('HELLO_BOT' , "Hello {}!".format(data['name']))
       return HttpResponse("OK")
   elif request.method == 'GET':
     return HttpResponse("Hello there!")
@@ -50,7 +50,7 @@ def hello(request):
 def message(request):
   message = datetime.datetime.now()
   message = message.strftime("%A %B %d %Y %I:%M%p")
-  bot.send_message(message)
+  bot.send_message('HELLO_BOT',message)
   return HttpResponse("Message sent: %s" % message)
 
 # Helper to determine is a message is a valid v3 message

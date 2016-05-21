@@ -6,13 +6,11 @@ import requests
 import os
 
 
-def send_message(message):
+def send_message(bot_id, message):
   try:
-    # Hacky fix for now so it works local?
-    import config
-    bot_id = config.bot_id
+    bot_id = os.environ[bot_id]
   except:
-    bot_id = os.environ['BOT_ID']
+    pass
   # Helper function to send a message
   payload = {'bot_id':bot_id, 'text':message}
   r = requests.post("https://api.groupme.com/v3/bots/post", data=payload)
