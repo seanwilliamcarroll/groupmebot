@@ -18,3 +18,7 @@ Ideas:
 * Add ability to fetch weather, other informational services
 * Add ability to report group analytics (most liked, most kicked, etc.)
 * Add ability to post a random gif from Giphy (similar to Slack?)
+
+Bots:
+* Parrotbot - Repeats whatever someone said
+* Hellobot - If someone says 'hello' anywere in their message, Hellobot will reply with 'Hello <username>!'
